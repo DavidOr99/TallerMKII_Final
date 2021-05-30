@@ -29,5 +29,7 @@ public interface ClienteFacadeLocal {
     List<Cliente> findRange(int[] range);
 
     int count();
+
+    public Cliente getCliente(String nombre);
     
 }

@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import EJB.PedidosFacadeLocal;
 import EJB.ProveedoresFacadeLocal;
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,42 +17,66 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import modelo.Pedidos;
 import modelo.Proveedores;
-
 /**
  *
  * @author DAVID
  */
 @Named
 @ViewScoped
-public class ProveedorController implements Serializable{
+public class PedidoController implements Serializable{
+    private Pedidos ped;
     private Proveedores pro;
+    
     @EJB
-    private ProveedoresFacadeLocal provEJB;
+    private PedidosFacadeLocal pedEJB;
+    
+    @EJB
+    private ProveedoresFacadeLocal proEJB;
     
     @PostConstruct
     public void init(){
-        pro= new Proveedores();
+        ped= new Pedidos();
+        pro=new Proveedores();
     }
 
-    public Proveedores getPro() {
+    public Pedidos getPed() {
+        return ped;
+    }
+
+    public void setPed(Pedidos ped) {
+        this.ped = ped;
+    }
+
+        public Proveedores getPro() {
         return pro;
     }
 
     public void setPro(Proveedores pro) {
         this.pro = pro;
     }
-
-    public ProveedoresFacadeLocal getProvEJB() {
-        return provEJB;
+    public PedidosFacadeLocal getPedEJB() {
+        return pedEJB;
     }
 
-    public void setProvEJB(ProveedoresFacadeLocal provEJB) {
-        this.provEJB = provEJB;
+    public void setPedEJB(PedidosFacadeLocal pedEJB) {
+        this.pedEJB = pedEJB;
+    }
+
+    public ProveedoresFacadeLocal getProEJB() {
+        return proEJB;
+    }
+
+    public void setProEJB(ProveedoresFacadeLocal proEJB) {
+        this.proEJB = proEJB;
     }
     
-    public void insertarProveedor(){
-        provEJB.create(pro);
+    public void insertarPedido(){
+        pro = proEJB.getProveedor(pro.getNombre());
+        ped.setProveedor(pro);
+        pedEJB.create(ped);
+        proEJB.remove(proEJB.getProveedor(pro.getNombre()));
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {
@@ -59,16 +84,16 @@ public class ProveedorController implements Serializable{
         }
     }
     
-    public void borrarProveedor(){
-        List<Proveedores> lista = provEJB.findAll();
-        Proveedores aux = null;
-        for (Proveedores lista1 : lista) {
-            if(lista1.getNombre().equals(pro.getNombre())){
+    public void borrarPedido(){
+        List<Pedidos> lista = pedEJB.findAll();
+        Pedidos aux = null;
+        for (Pedidos lista1 : lista) {
+            if(lista1.getContenido().equals(ped.getContenido())){
                 aux=lista1;
                 break;
             }
         }
-        provEJB.remove(aux);
+        pedEJB.remove(aux);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {

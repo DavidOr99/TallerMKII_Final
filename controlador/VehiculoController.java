@@ -5,7 +5,8 @@
  */
 package controlador;
 
-import EJB.ProveedoresFacadeLocal;
+import EJB.ClienteFacadeLocal;
+import EJB.VehiculosFacadeLocal;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +17,8 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import modelo.Proveedores;
+import modelo.Cliente;
+import modelo.Vehiculos;
 
 /**
  *
@@ -24,34 +26,58 @@ import modelo.Proveedores;
  */
 @Named
 @ViewScoped
-public class ProveedorController implements Serializable{
-    private Proveedores pro;
+public class VehiculoController implements Serializable{
+    private Vehiculos veh;
+    private Cliente cli;
+    
     @EJB
-    private ProveedoresFacadeLocal provEJB;
+    private VehiculosFacadeLocal vehEJB;
+    
+    @EJB
+    private ClienteFacadeLocal cliEJB;
     
     @PostConstruct
     public void init(){
-        pro= new Proveedores();
+        veh= new Vehiculos();
+        cli=new Cliente();
     }
 
-    public Proveedores getPro() {
-        return pro;
+    public Vehiculos getVeh() {
+        return veh;
     }
 
-    public void setPro(Proveedores pro) {
-        this.pro = pro;
+    public void setVeh(Vehiculos veh) {
+        this.veh = veh;
     }
 
-    public ProveedoresFacadeLocal getProvEJB() {
-        return provEJB;
+    public Cliente getCli() {
+        return cli;
     }
 
-    public void setProvEJB(ProveedoresFacadeLocal provEJB) {
-        this.provEJB = provEJB;
+    public void setCli(Cliente cli) {
+        this.cli = cli;
+    }
+    public VehiculosFacadeLocal getVehEJB() {
+        return vehEJB;
+    }
+
+    public void setVehEJB(VehiculosFacadeLocal vehEJB) {
+        this.vehEJB = vehEJB;
+    }
+
+    public ClienteFacadeLocal getCliEJB() {
+        return cliEJB;
+    }
+
+    public void setCliEJB(ClienteFacadeLocal cliEJB) {
+        this.cliEJB = cliEJB;
     }
     
-    public void insertarProveedor(){
-        provEJB.create(pro);
+    public void insertarVehiculo(){
+        cli = cliEJB.getCliente(cli.getNif());
+        veh.setCliente(cli);
+        vehEJB.create(veh);
+        cliEJB.remove(cliEJB.getCliente(cli.getNif()));
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {
@@ -59,16 +85,16 @@ public class ProveedorController implements Serializable{
         }
     }
     
-    public void borrarProveedor(){
-        List<Proveedores> lista = provEJB.findAll();
-        Proveedores aux = null;
-        for (Proveedores lista1 : lista) {
-            if(lista1.getNombre().equals(pro.getNombre())){
+    public void borrarVehiculo(){
+        List<Vehiculos> lista = vehEJB.findAll();
+        Vehiculos aux = null;
+        for (Vehiculos lista1 : lista) {
+            if(lista1.getMatricula().equals(veh.getMatricula())){
                 aux=lista1;
                 break;
             }
         }
-        provEJB.remove(aux);
+        vehEJB.remove(aux);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {
