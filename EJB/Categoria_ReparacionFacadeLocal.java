@@ -29,5 +29,7 @@ public interface Categoria_ReparacionFacadeLocal {
     List<Categoria_Reparacion> findRange(int[] range);
 
     int count();
+
+    public Categoria_Reparacion getCategoria(String nombre);
     
 }

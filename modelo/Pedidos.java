@@ -39,8 +39,8 @@ public class Pedidos implements Serializable{
     @Column(name = "fechaPedido") 
     private String fechaPedido;
        
-    @Column(name = "observacion") 
-    private String observacion;
+    @Column(name = "observaciones") 
+    private String observaciones;
 
     public int getIdPedido() {
         return idPedido;
@@ -75,11 +75,11 @@ public class Pedidos implements Serializable{
     }
 
     public String getObservacion() {
-        return observacion;
+        return observaciones;
     }
 
     public void setObservacion(String observacion) {
-        this.observacion = observacion;
+        this.observaciones = observacion;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Pedidos implements Serializable{
         hash = 67 * hash + Objects.hashCode(this.contenido);
         hash = 67 * hash + Objects.hashCode(this.proveedor);
         hash = 67 * hash + Objects.hashCode(this.fechaPedido);
-        hash = 67 * hash + Objects.hashCode(this.observacion);
+        hash = 67 * hash + Objects.hashCode(this.observaciones);
         return hash;
     }
 
@@ -114,7 +114,7 @@ public class Pedidos implements Serializable{
         if (!Objects.equals(this.fechaPedido, other.fechaPedido)) {
             return false;
         }
-        if (!Objects.equals(this.observacion, other.observacion)) {
+        if (!Objects.equals(this.observaciones, other.observaciones)) {
             return false;
         }
         return Objects.equals(this.proveedor, other.proveedor);
@@ -122,7 +122,7 @@ public class Pedidos implements Serializable{
 
     @Override
     public String toString() {
-        return "Pedidos{" + "idPedido=" + idPedido + ", contenido=" + contenido + ", proveedor=" + proveedor + ", fechaPedido=" + fechaPedido + ", observacion=" + observacion + '}';
+        return "Pedidos{" + "idPedido=" + idPedido + ", contenido=" + contenido + ", proveedor=" + proveedor + ", fechaPedido=" + fechaPedido + ", observaciones=" + observaciones + '}';
     }
     
 }

@@ -29,5 +29,7 @@ public interface PedidosFacadeLocal {
     List<Pedidos> findRange(int[] range);
 
     int count();
+
+    public Pedidos getPedido(String contenido);
     
 }

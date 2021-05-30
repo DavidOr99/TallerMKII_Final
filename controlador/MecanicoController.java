@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package controlador;
-
-import EJB.ProveedoresFacadeLocal;
+import EJB.MecanicosFacadeLocal;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -16,42 +15,42 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import modelo.Proveedores;
-
+import modelo.Mecanicos;
 /**
  *
  * @author DAVID
  */
 @Named
 @ViewScoped
-public class ProveedorController implements Serializable{
-    private Proveedores pro;
+public class MecanicoController implements Serializable{
+    private Mecanicos mec;
+    
     @EJB
-    private ProveedoresFacadeLocal provEJB;
+    private MecanicosFacadeLocal mecEJB;
     
     @PostConstruct
     public void init(){
-        pro= new Proveedores();
+        mec= new Mecanicos();
     }
 
-    public Proveedores getPro() {
-        return pro;
+    public Mecanicos getMec() {
+        return mec;
     }
 
-    public void setPro(Proveedores pro) {
-        this.pro = pro;
+    public void setMec(Mecanicos mec) {
+        this.mec = mec;
     }
 
-    public ProveedoresFacadeLocal getProvEJB() {
-        return provEJB;
+    public MecanicosFacadeLocal getMecEJB() {
+        return mecEJB;
     }
 
-    public void setProvEJB(ProveedoresFacadeLocal provEJB) {
-        this.provEJB = provEJB;
+    public void setmecEJB(MecanicosFacadeLocal mecEJB) {
+        this.mecEJB = mecEJB;
     }
     
-    public void insertarProveedor(){
-        provEJB.create(pro);
+    public void insertarMecanico(){
+        mecEJB.create(mec);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {
@@ -59,16 +58,16 @@ public class ProveedorController implements Serializable{
         }
     }
     
-    public void borrarProveedor(){
-        List<Proveedores> lista = provEJB.findAll();
-        Proveedores aux = null;
-        for (Proveedores lista1 : lista) {
-            if(lista1.getNombre().equals(pro.getNombre())){
+    public void borrarMecanico(){
+        List<Mecanicos> lista = mecEJB.findAll();
+        Mecanicos aux = null;
+        for (Mecanicos lista1 : lista) {
+            if(lista1.getNif().equals(mec.getNif())){
                 aux=lista1;
                 break;
             }
         }
-        provEJB.remove(aux);
+        mecEJB.remove(aux);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {

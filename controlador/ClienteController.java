@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import EJB.ProveedoresFacadeLocal;
+import EJB.ClienteFacadeLocal;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -16,42 +16,41 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import modelo.Proveedores;
-
+import modelo.Cliente;
 /**
  *
  * @author DAVID
  */
 @Named
 @ViewScoped
-public class ProveedorController implements Serializable{
-    private Proveedores pro;
+public class ClienteController implements Serializable{
+    private Cliente cli;
     @EJB
-    private ProveedoresFacadeLocal provEJB;
+    private ClienteFacadeLocal cliEJB;
     
     @PostConstruct
     public void init(){
-        pro= new Proveedores();
+        cli= new Cliente();
     }
 
-    public Proveedores getPro() {
-        return pro;
+    public Cliente getCli() {
+        return cli;
     }
 
-    public void setPro(Proveedores pro) {
-        this.pro = pro;
+    public void setCli(Cliente cli) {
+        this.cli = cli;
     }
 
-    public ProveedoresFacadeLocal getProvEJB() {
-        return provEJB;
+    public ClienteFacadeLocal getCliEJB() {
+        return cliEJB;
     }
 
-    public void setProvEJB(ProveedoresFacadeLocal provEJB) {
-        this.provEJB = provEJB;
+    public void setCliEJB(ClienteFacadeLocal cliEJB) {
+        this.cliEJB = cliEJB;
     }
     
-    public void insertarProveedor(){
-        provEJB.create(pro);
+    public void insertarCliente(){
+        cliEJB.create(cli);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {
@@ -59,16 +58,16 @@ public class ProveedorController implements Serializable{
         }
     }
     
-    public void borrarProveedor(){
-        List<Proveedores> lista = provEJB.findAll();
-        Proveedores aux = null;
-        for (Proveedores lista1 : lista) {
-            if(lista1.getNombre().equals(pro.getNombre())){
+    public void borrarCliente(){
+        List<Cliente> lista = cliEJB.findAll();
+        Cliente aux = null;
+        for (Cliente lista1 : lista) {
+            if(lista1.getNif().equals(cli.getNif())){
                 aux=lista1;
                 break;
             }
         }
-        provEJB.remove(aux);
+        cliEJB.remove(aux);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {

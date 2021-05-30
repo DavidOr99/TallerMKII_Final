@@ -5,9 +5,11 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Proveedores;
 
 /**
@@ -27,6 +29,20 @@ public class ProveedoresFacade extends AbstractFacade<Proveedores> implements Pr
 
     public ProveedoresFacade() {
         super(Proveedores.class);
+    }
+
+    @Override
+    public Proveedores getProveedor(String nombre) {
+        Proveedores pro = null;
+        String consultaTSQL;
+        consultaTSQL = "FROM Proveedores p Where p.nombre=:param1";
+        Query query = em.createQuery(consultaTSQL);
+        query.setParameter("param1",nombre);
+        List<Proveedores> listaPro = query.getResultList();
+        if(listaPro.isEmpty()==false){
+            pro= listaPro.get(0);
+        }
+        return pro;
     }
     
 }
