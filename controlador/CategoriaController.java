@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import EJB.ProveedoresFacadeLocal;
+import EJB.Categoria_ReparacionFacadeLocal;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -16,42 +16,41 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import modelo.Proveedores;
-
+import modelo.Categoria_Reparacion;
 /**
  *
  * @author DAVID
  */
 @Named
 @ViewScoped
-public class ProveedorController implements Serializable{
-    private Proveedores pro;
+public class CategoriaController implements Serializable{
+    private Categoria_Reparacion cat;
     @EJB
-    private ProveedoresFacadeLocal provEJB;
+    private Categoria_ReparacionFacadeLocal catEJB;
     
     @PostConstruct
     public void init(){
-        pro= new Proveedores();
+        cat= new Categoria_Reparacion();
     }
 
-    public Proveedores getPro() {
-        return pro;
+    public Categoria_Reparacion getCat() {
+        return cat;
     }
 
-    public void setPro(Proveedores pro) {
-        this.pro = pro;
+    public void setCat(Categoria_Reparacion cat) {
+        this.cat = cat;
     }
 
-    public ProveedoresFacadeLocal getProvEJB() {
-        return provEJB;
+    public Categoria_ReparacionFacadeLocal getCatEJB() {
+        return catEJB;
     }
 
-    public void setProvEJB(ProveedoresFacadeLocal provEJB) {
-        this.provEJB = provEJB;
+    public void setCatEJB(Categoria_ReparacionFacadeLocal catEJB) {
+        this.catEJB = catEJB;
     }
     
-    public void insertarProveedor(){
-        provEJB.create(pro);
+    public void insertarCategoria_Reparacion(){
+        catEJB.create(cat);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {
@@ -59,16 +58,16 @@ public class ProveedorController implements Serializable{
         }
     }
     
-    public void borrarProveedor(){
-        List<Proveedores> lista = provEJB.findAll();
-        Proveedores aux = null;
-        for (Proveedores lista1 : lista) {
-            if(lista1.getNombre().equals(pro.getNombre())){
+    public void borrarCategoria_Reparacion(){
+        List<Categoria_Reparacion> lista = catEJB.findAll();
+        Categoria_Reparacion aux = null;
+        for (Categoria_Reparacion lista1 : lista) {
+            if(lista1.getNombre().equals(cat.getNombre())){
                 aux=lista1;
                 break;
             }
         }
-        provEJB.remove(aux);
+        catEJB.remove(aux);
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         } catch (IOException ex) {

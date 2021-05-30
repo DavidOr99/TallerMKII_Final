@@ -5,9 +5,11 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Pedidos;
 
 /**
@@ -27,6 +29,20 @@ public class PedidosFacade extends AbstractFacade<Pedidos> implements PedidosFac
 
     public PedidosFacade() {
         super(Pedidos.class);
+    }
+
+    @Override
+    public Pedidos getPedido(String contenido) {
+        Pedidos pro = null;
+        String consultaTSQL;
+        consultaTSQL = "FROM Pedidos p Where p.contenido=:param1";
+        Query query = em.createQuery(consultaTSQL);
+        query.setParameter("param1",contenido);
+        List<Pedidos> listaPro = query.getResultList();
+        if(listaPro.isEmpty()==false){
+            pro= listaPro.get(0);
+        }
+        return pro;
     }
     
 }

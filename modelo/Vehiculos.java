@@ -57,7 +57,7 @@ public class Vehiculos implements Serializable {
     @Column(name = "observaciones") 
     private String observaciones;
     
-    @JoinColumn(name = "cliente") 
+    @JoinColumn(name = "idCliente") 
     @OneToOne(cascade=CascadeType.PERSIST)
     private Cliente cliente;
 

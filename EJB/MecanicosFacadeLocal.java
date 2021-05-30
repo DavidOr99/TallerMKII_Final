@@ -29,5 +29,7 @@ public interface MecanicosFacadeLocal {
     List<Mecanicos> findRange(int[] range);
 
     int count();
+
+    public Mecanicos getMecanico(String nif);
     
 }

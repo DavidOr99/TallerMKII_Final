@@ -29,5 +29,7 @@ public interface VehiculosFacadeLocal {
     List<Vehiculos> findRange(int[] range);
 
     int count();
+
+    public Vehiculos getVehiculo(String matricula);
     
 }

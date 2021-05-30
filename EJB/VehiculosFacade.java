@@ -5,9 +5,11 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Vehiculos;
 
 /**
@@ -28,5 +30,18 @@ public class VehiculosFacade extends AbstractFacade<Vehiculos> implements Vehicu
     public VehiculosFacade() {
         super(Vehiculos.class);
     }
-    
+
+    @Override
+    public Vehiculos getVehiculo(String matricula) {
+        Vehiculos pro = null;
+        String consultaTSQL;
+        consultaTSQL = "FROM Vehiculos v Where v.matricula=:param1";
+        Query query = em.createQuery(consultaTSQL);
+        query.setParameter("param1",matricula);
+        List<Vehiculos> listaPro = query.getResultList();
+        if(listaPro.isEmpty()==false){
+            pro= listaPro.get(0);
+        }
+        return pro;
+    }
 }
