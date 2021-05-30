@@ -24,7 +24,6 @@ import modelo.Mecanicos;
 @ViewScoped
 public class MecanicoController implements Serializable{
     private Mecanicos mec;
-    
     @EJB
     private MecanicosFacadeLocal mecEJB;
     
