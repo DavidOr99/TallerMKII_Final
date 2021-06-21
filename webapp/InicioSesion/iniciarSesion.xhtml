@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Inicio de sesión</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- HOJA DE ESTILOS -->
+    <link rel="stylesheet" type="text/css" href="./inicioSesion.css">
+</h:head>
+
+<h:body>
+    <h:form>
+    <div class="parametros">
+        <div class="imagen">
+            <img src="../media/img/digimon-300x300.png" alt="">
+        </div>
+        <div class="parametro">
+            <label for="">
+                Nombre de usuario
+                <input type="text" id="usuario">
+            </label>
+        </div>
+        <div class="parametro">
+            <label for="">
+                Contrase&ntilde;a
+                <input id="contrasenia" type="password">
+                <span class="fa fa-fw fa-eye password-icon show-password" onmousedown="mostrarContrasenia()"
+                      onmouseup="noMostrarContrasenia()"></span>
+                <script>
+                    function mostrarContrasenia() {
+                        var contrasenia = document.getElementById("contrasenia");
+                        contrasenia.type = "text";
+                    }
+
+                    function noMostrarContrasenia() {
+                        var contrasenia = document.getElementById("contrasenia");
+                        contrasenia.type = "password";
+                    }
+                </script>
+            </label>
+        </div>
+        <div class="botones">
+            <button onclick="iniciarSesion()" class="azul">Iniciar Sesion</button>
+            <button onclick="registrar()" class="gris">Crea tu cuenta</button>
+        </div>
+        <div class="errorInicioSesion" style="visibility: hidden">
+            <text id="textErrorInicioSesion"></text>
+        </div>
+    </div>
+        </h:form>
+</h:body>
+</html>
