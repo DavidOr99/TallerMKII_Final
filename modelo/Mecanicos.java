@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -36,6 +38,10 @@ public class Mecanicos implements Serializable {
     
     @Column(name = "telefono") 
     private String telefono;
+    
+    @JoinColumn(name = "numUser") 
+    @OneToOne
+    private Usuarios usuario;
 
     public int getIdMecanicos() {
         return idMecanicos;
@@ -77,14 +83,23 @@ public class Mecanicos implements Serializable {
         this.telefono = telefono;
     }
 
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + this.idMecanicos;
-        hash = 37 * hash + Objects.hashCode(this.nif);
-        hash = 37 * hash + Objects.hashCode(this.nombre);
-        hash = 37 * hash + Objects.hashCode(this.apellidos);
-        hash = 37 * hash + Objects.hashCode(this.telefono);
+        int hash = 7;
+        hash = 47 * hash + this.idMecanicos;
+        hash = 47 * hash + Objects.hashCode(this.nif);
+        hash = 47 * hash + Objects.hashCode(this.nombre);
+        hash = 47 * hash + Objects.hashCode(this.apellidos);
+        hash = 47 * hash + Objects.hashCode(this.telefono);
+        hash = 47 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -112,13 +127,17 @@ public class Mecanicos implements Serializable {
         if (!Objects.equals(this.apellidos, other.apellidos)) {
             return false;
         }
-        return Objects.equals(this.telefono, other.telefono);
+        if (!Objects.equals(this.telefono, other.telefono)) {
+            return false;
+        }
+        return Objects.equals(this.usuario, other.usuario);
     }
 
     @Override
     public String toString() {
-        return "Mecanicos{" + "idMecanicos=" + idMecanicos + ", nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + '}';
+        return "Mecanicos{" + "idMecanicos=" + idMecanicos + ", nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", usuario=" + usuario + '}';
     }
+
     
     
 }

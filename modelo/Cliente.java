@@ -104,16 +104,11 @@ public class Cliente implements Serializable{
         if (!Objects.equals(this.apellidos, other.apellidos)) {
             return false;
         }
-        if (!Objects.equals(this.telefono, other.telefono)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.telefono, other.telefono);
     }
 
     @Override
     public String toString() {
         return "Cliente{" + "idClientes=" + idClientes + ", nif=" + nif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + '}';
     }
-    
 } 
-

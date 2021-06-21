@@ -74,7 +74,5 @@ public class Categoria_Reparacion implements Serializable {
     @Override
     public String toString() {
         return "Categoria_Reparacion{" + "idCategoria_Reparacion=" + idCategoria_Reparacion + ", nombre=" + nombre + '}';
-    }
-    
-    
+    }   
 }
