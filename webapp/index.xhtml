@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Taller MKII</title>
+    </h:head>
+    <h:body style="background-color:#abdefa;font-family:Verdana, Geneva, sans-serif;">
+        <h1 style="text-align:center;">Taller Vehículos MK II </h1>
+        <p style="text-align:center;"><img src="resources/logo-car.png" alt="logo taller" /></p>
+        <div style="text-align:center;">
+            <h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+            <h:panelGrid style="margin:0px auto;" columns="2" cellpadding="8" id="grid">
+                <p:outputLabel value="Nombre" style="font-family:Verdana, Geneva, sans-serif;"/>
+                <p:inputText value="#{indexControler.usuario.usuario}" required="true" requiredMessage="Repita contraseña es un campo obligatorio"/>
+                <p:outputLabel value="Contraseña" style="font-family:Verdana, Geneva, sans-serif;"/>
+                <p:password id="pwd" value="#{indexControler.usuario.contrasenia}" required="true" requiredMessage="Repita contraseña es un campo obligatorio"/>
+            </h:panelGrid>
+                <p:commandButton value="Iniciar Sesión" action="#{indexControler.iniciarSesion()}" update="grid"/>
+        </h:form>
+        </div>
+    </h:body>
+</html>
+                <!--
+                <p:commandButton value="Nuevo Cliente" action="./Cliente/AltaCliente.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Nuevo vehiculo" action="./Vehiculo/AltaVehiculo.xhtml?faces-redirect=true" />
+                <p:commandButton value="Nuevo Proveedor" action="./Proveedor/AltaProveedor.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Nueva Categoria" action="./Categoria/AltaCategoria.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Nuevo Mecanico" action="./Mecanico/AltaMecanico.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Nuevo Pedido" action="./Pedido/AltaPedido.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Nuevo Articulo" action="./Almacen/AltaAlmacen.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Borrar Articulo" action="BajaAlmacen.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Borrar Pedido" action="BajaPedido.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Borrar Mecanico" action="BajaMecanico.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Borrar cliente" action="BajaCliente.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Borrar vehiculo" action="BajaVehiculo.xhtml?faces-redirect=true" />
+                <p:commandButton value="Borrar Proveedor" action="BajaProveedor.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Borrar Categoria" action="BajaCategoria.xhtml?faces-redirect=true"/>
+                 <p:commandButton value="Generar Factura" action="Factura.xhtml?faces-redirect=true"/>
+                -->
+
+
