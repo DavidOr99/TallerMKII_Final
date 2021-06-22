@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Alta Almacen</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <h:panelGrid columns="6" cellpadding="3" id="grid">
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{almacenController.alm.nombre}" required="true"/>
+                <p:outputLabel value="Estado"/>
+                <p:inputText value="#{almacenController.alm.estado}" required="true"/>
+                <p:outputLabel value="Nombre de Proveedor (Opcional)"/>
+                <p:inputText value="#{almacenController.pro.nombre}"/>
+                <p:outputLabel value="Cantidad"/>
+                <p:inputText value="#{almacenController.alm.cantidad}"/>
+                <p:outputLabel value="ID de pedido (si tuviera)"/>
+                <p:inputText value="#{almacenController.ped.idPedido}"/>
+                <p:outputLabel value="Observacion"/>
+                <p:inputText value="#{almacenController.alm.observacion}" required="true"/>
+        </h:panelGrid>
+        <p:commandButton value="Añadir" actionListener="#{almacenController.insertarArticulo()}"/>
+        </h:form>
+    </h:body>
+</html>

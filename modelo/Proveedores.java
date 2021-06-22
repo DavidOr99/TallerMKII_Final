@@ -89,5 +89,4 @@ public class Proveedores implements Serializable {
     public String toString() {
         return "Proveedores{" + "idProveedores=" + idProveedores + ", cif=" + cif + ", nombre=" + nombre + '}';
     }
-    
 }

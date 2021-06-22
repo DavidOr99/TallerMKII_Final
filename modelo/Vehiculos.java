@@ -14,7 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 /**
  *
@@ -58,7 +58,7 @@ public class Vehiculos implements Serializable {
     private String observaciones;
     
     @JoinColumn(name = "idCliente") 
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Cliente cliente;
 
     public int getIdVehiculos() {

@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 /**
@@ -38,15 +39,15 @@ public class Reparaciones implements Serializable {
     private String precio;
     
     @JoinColumn(name = "mecanico") 
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Mecanicos mecanico;
     
     @JoinColumn(name = "coche") 
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Vehiculos coche;
     
     @JoinColumn(name = "cliente") 
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Cliente cliente;
     
     @Column(name = "descripcion") 
