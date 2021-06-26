@@ -11,9 +11,11 @@ and open the template in the editor.
     <h:head>
         <title>Alta Cliente</title>
     </h:head>
-    <h:body>
+    <h:body style="background-color:#abdefa;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+        <h1 style="text-align:center;">Taller Vehículos MK II </h1>
+        <p style="text-align:center;"><img src="./../resources/logo-car.png" alt="logo taller" /></p>
         <h:form>
-        <h:panelGrid columns="4" cellpadding="3" id="grid">
+        <h:panelGrid style="margin:0px auto;" columns="2" cellpadding="3" id="grid">
                 <p:outputLabel value="NIF/NIE"/>
                 <p:inputText value="#{clienteController.cli.nif}" required="true"/>
                 <p:outputLabel value="Nombre"/>
@@ -24,6 +26,7 @@ and open the template in the editor.
                 <p:inputText value="#{clienteController.cli.telefono}" required="true"/>
         </h:panelGrid>
         <p:commandButton value="Registrar" actionListener="#{clienteController.insertarCliente()}"/>
+        <p:commandButton value="Regresar" onclick="window.history.go(-1); return false;"/>
         </h:form>
     </h:body>
 </html>

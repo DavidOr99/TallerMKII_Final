@@ -11,67 +11,36 @@ and open the template in the editor.
     <h:head>
         <title>Alta Vehiculo</title>
     </h:head>
-    <h:body>
+    <h:body style="background-color:#abdefa;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+        <h1 style="text-align:center;">Taller Vehículos MK II </h1>
+        <p style="text-align:center;"><img src="./../resources/logo-car.png" alt="logo taller" /></p>
         <h:form>
-        <table>
-            <tr>
-                <td>
-                    <p:outputLabel value="Numero de Bastidor"/>
+            <h:panelGrid style="margin:0px auto;" columns="2" cellpadding="3" id="grid">
+                <p:outputLabel value="Numero de Bastidor"/>
                     <p:inputText value="#{vehiculoController.veh.numBastidor}" maxlength="45" required="true"/>
-                </td>
-                <td>
                     <p:outputLabel value="Matricula"/>
                     <p:inputText value="#{vehiculoController.veh.matricula}" maxlength="45" required="true"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <p:outputLabel value="Marca"/>
                     <p:inputText value="#{vehiculoController.veh.marca}" maxlength="45" required="true"/>
-                </td>
-                <td> 
                     <p:outputLabel value="Modelo"/>
                     <p:inputText value="#{vehiculoController.veh.modelo}" maxlength="45" required="true"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <p:outputLabel value="Año Modelo"/>
                     <p:inputText value="#{vehiculoController.veh.anioModelo}" maxlength="45" required="true"/>
-                </td>
-                <td>
                     <p:outputLabel value="Fecha de Matriculacion"/>
                     <p:inputText value="#{vehiculoController.veh.fechaMatriculacion}" maxlength="45" required="true"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <p:outputLabel value="Km Recorridos"/>
                     <p:inputText value="#{vehiculoController.veh.kmRecorridos}" maxlength="45" required="true"/>
-                </td>
-                <td>
                     <p:outputLabel value="Fecha de última Revision"/>
                     <p:inputText value="#{vehiculoController.veh.fechaUltimoMantenimiento}" maxlength="45" required="true"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <p:outputLabel value="Observaciones"/>
                     <p:inputText value="#{vehiculoController.veh.observaciones}" maxlength="1000"/>
-                </td>
-                <td>
                     <p:outputLabel value="Piezas Especiales (1=SI, 0=NO)"/>
                     <p:inputText value="#{vehiculoController.veh.piezasEspeciales}" required="true"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <p:outputLabel value="Nif del Cliente"/>
                     <p:inputText value="#{vehiculoController.cli.nif}" maxlength="45" required="true"/>
-                </td>
-            </tr>
-        </table>
+            </h:panelGrid> 
         <p:commandButton value="Registrar" actionListener="#{vehiculoController.insertarVehiculo()}"/>
+        <p:commandButton value="Regresar" onclick="window.history.go(-1); return false;"/>
         </h:form>
     </h:body>
 </html>

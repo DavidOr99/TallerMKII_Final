@@ -7,23 +7,31 @@ and open the template in the editor.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Alta Mecanico</title>
     </h:head>
-    <h:body>
+    <h:body style="background-color:#abdefa;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+        <h1 style="text-align:center;">Taller Vehículos MK II </h1>
+        <p style="text-align:center;"><img src="./../resources/logo-car.png" alt="logo taller" /></p>
         <h:form>
-        <h:panelGrid columns="4" cellpadding="3" id="grid">
-                <p:outputLabel value="NIF/NIE"/>
-                <p:inputText value="#{mecanicoController.mec.nif}" required="true"/>
-                <p:outputLabel value="Nombre"/>
-                <p:inputText value="#{mecanicoController.mec.nombre}" required="true"/>
-                <p:outputLabel value="Apellidos"/>
-                <p:inputText value="#{mecanicoController.mec.apellidos}" required="true"/>
-                <p:outputLabel value="Telefono"/>
-                <p:inputText value="#{mecanicoController.mec.telefono}" required="true"/>
-        </h:panelGrid>
-        <p:commandButton value="Registrar" actionListener="#{mecanicoController.insertarMecanico()}"/>
+            <h:panelGrid style="margin:0px auto;" columns="2" cellpadding="3" id="grid">
+                    <p:outputLabel value="NIF/NIE"/>
+                    <p:inputText value="#{mecanicoController.mec.nif}" required="true"/>
+                    <p:outputLabel value="Nombre"/>
+                    <p:inputText value="#{mecanicoController.mec.nombre}" required="true"/>
+                    <p:outputLabel value="Apellidos"/>
+                    <p:inputText value="#{mecanicoController.mec.apellidos}" required="true"/>
+                    <p:outputLabel value="Telefono"/>
+                    <p:inputText value="#{mecanicoController.mec.telefono}" required="true"/>
+                    <p:outputLabel value="Nombre de usuario"/>
+                    <p:inputText value="#{mecanicoController.us.usuario}" required="true"/>
+                    <p:outputLabel value="Contraseña"/>
+                    <p:inputText value="#{mecanicoController.us.contrasenia}" required="true"/>
+            </h:panelGrid>
+            <p:commandButton value="Registrar" actionListener="#{mecanicoController.insertarMecanico()}"/>
+            <p:commandButton value="Regresar" onclick="window.history.go(-1); return false;"/>
         </h:form>
     </h:body>
 </html>

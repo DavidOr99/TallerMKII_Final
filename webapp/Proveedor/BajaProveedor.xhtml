@@ -11,13 +11,16 @@ and open the template in the editor.
     <h:head>
         <title>Baja Proveedor</title>
     </h:head>
-    <h:body>
+    <h:body style="background-color:#abdefa;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+        <h1 style="text-align:center;">Taller Vehículos MK II </h1>
+        <p style="text-align:center;"><img src="./../resources/logo-car.png" alt="logo taller" /></p>
         <h:form>
-        <h:panelGrid columns="1" cellpadding="3" id="grid">
+        <h:panelGrid style="margin:0px auto;" columns="2" cellpadding="3" id="grid">
                 <p:outputLabel value="Nombre"/>
                 <p:inputText value="#{proveedorController.pro.nombre}" required="true"/>
         </h:panelGrid>
         <p:commandButton value="Borrar" actionListener="#{proveedorController.borrarProveedor()}"/>
+        <p:commandButton value="Regresar" onclick="window.history.go(-1); return false;"/>
         </h:form>
     </h:body>
 </html>
